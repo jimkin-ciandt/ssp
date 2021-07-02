@@ -1,7 +1,12 @@
+/**
+ * 这两天抽空斗胆重构下你的node入口文件
+ */
+
 
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
+// 引入express框架
 
 
 var server = http.createServer((req, res) => {
@@ -14,7 +19,7 @@ var server = http.createServer((req, res) => {
 
 
     function readFileSend(url) {
-
+        console.log('url', url);
         let suffix = url.slice( url.lastIndexOf('.') + 1 );
         writeHead(suffix);
 
@@ -29,6 +34,11 @@ var server = http.createServer((req, res) => {
                 console.log("req.url: ", req.url);
                 console.log('fileDir: ', fileDir);
                 console.log('Not found File');
+
+                /*
+                *  手动清除/favicon.ico
+                */
+
             } else {
                 res.end(data);
             }
